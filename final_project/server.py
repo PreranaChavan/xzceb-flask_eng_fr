@@ -35,10 +35,18 @@ def index():
     return render_template('index.html')
 
 @app.route('/englishToFrench', methods=['POST'])
-def translate_english_to_french():
-    english_text = request.form['english_text']
+def translateToFrench():
+    english_text =request.args.get('textToTranslate')
     french_text = english_to_french(english_text)
     return french_text
+
+
+@app.route("/frenchToEnglish")
+def translateToEnglish():
+    french_text = request.args.get('textToTranslate')
+    # Write your code here
+    english_text = french_to_english(french_text)
+    return english_text
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8080)
