@@ -28,25 +28,25 @@ if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
 """
 
-app = Flask(__name__)
+app = Flask("Web Translator")
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/englishToFrench', methods=['POST'])
+@app.route("/englishToFrench")
 def translateToFrench():
     english_text =request.args.get('textToTranslate')
-    french_text = english_to_french(english_text)
-    return french_text
+    translated_text = english_to_french(english_text)
+    return translated_text
 
 
 @app.route("/frenchToEnglish")
 def translateToEnglish():
     french_text = request.args.get('textToTranslate')
     # Write your code here
-    english_text = french_to_english(french_text)
-    return english_text
+    translated_text = french_to_english(french_text)
+    return translated_text
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8080)
